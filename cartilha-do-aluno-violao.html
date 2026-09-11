@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primeiros Acordes — Cartilha do Aluno</title>
+<meta name="description" content="Cartilha do aluno de violão: partes do instrumento, postura, mãos, afinação, leitura de diagramas, primeiros acordes, exercícios e ritmo.">
+<meta name="theme-color" content="#4A3220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2E9D3;
+    --paper-deep:#E9DCBC;
+    --ink:#3B2A1B;
+    --ink-soft:#6B5340;
+    --wood:#8C5A2E;
+    --wood-deep:#4A3220;
+    --wood-light:#C99A5B;
+    --brass:#B8862E;
+    --string:#D8B24C;
+    --sage:#4B6B4F;
+    --sage-deep:#33492F;
+    --rose:#8C3B2E;
+    --line:rgba(59,42,27,0.18);
+    --shadow: 4px 4px 0 rgba(59,42,27,0.10);
+    --radius: 4px;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Work Sans', -apple-system, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(59,42,27,0.05) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  h1,h2,h3,h4{font-family:var(--font-display); color:var(--wood-deep); margin:0 0 0.4em; font-weight:600;}
+  p{margin:0 0 1em;}
+  a{color:var(--wood-deep);}
+
+  /* ---------- Layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns: 250px 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    background:var(--wood-deep);
+    color:var(--paper);
+    padding:28px 18px 18px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  @media (max-width:860px){
+    .sidebar{ position:static; height:auto; padding:16px; }
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+    padding-bottom:16px;
+    border-bottom:1px solid rgba(242,233,211,0.18);
+  }
+  .brand svg{ width:34px; height:34px; flex-shrink:0; }
+  .brand .t{ font-family:var(--font-display); font-size:1.05rem; line-height:1.15; color:var(--paper);}
+  .brand .t small{ display:block; font-family:var(--font-body); font-size:0.7rem; color:var(--wood-light); font-weight:500; letter-spacing:0.02em; margin-top:2px;}
+
+  nav.chapters{ margin:0; padding:0; }
+  .chap-btn{
+    display:flex; align-items:center; gap:10px;
+    width:100%; text-align:left;
+    background:none; border:none; cursor:pointer;
+    color:var(--wood-light);
+    font-family:var(--font-body); font-size:0.88rem; font-weight:500;
+    padding:9px 10px; border-radius:3px;
+    margin-bottom:2px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .chap-btn .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:20px; height:20px; border-radius:50%;
+    border:1px solid rgba(242,233,211,0.35);
+    font-size:0.7rem; flex-shrink:0;
+  }
+  .chap-btn:hover{ background:rgba(242,233,211,0.08); color:var(--paper); }
+  .chap-btn.active{ background:var(--brass); color:var(--wood-deep); font-weight:700;}
+  .chap-btn.active .num{ border-color:var(--wood-deep); }
+  .chap-btn.seen .num{ border-color:var(--brass); background:rgba(184,134,46,0.32); color:var(--paper); }
+  .chap-btn.active.seen .num{ background:rgba(74,50,32,0.20); color:var(--wood-deep); border-color:var(--wood-deep); }
+
+  @media (max-width:860px){
+    nav.chapters{
+      display:flex; overflow-x:auto; gap:6px; padding-bottom:6px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .chap-btn{ white-space:nowrap; width:auto; }
+  }
+
+  .side-actions{
+    margin-top:20px; padding-top:16px;
+    border-top:1px solid rgba(242,233,211,0.18);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .side-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:none; border:1px solid rgba(242,233,211,0.35);
+    color:var(--paper);
+    font-family:var(--font-body); font-size:0.82rem; font-weight:600;
+    padding:9px 12px; border-radius:20px; cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .side-btn:hover{ background:var(--brass); color:var(--wood-deep); border-color:var(--brass); }
+  .side-hint{ font-size:0.68rem; color:var(--wood-light); text-align:center; line-height:1.6; }
+  .side-hint kbd{
+    font-family:var(--font-body); font-size:0.7rem;
+    border:1px solid rgba(242,233,211,0.30); border-radius:3px;
+    padding:0 4px; margin:0 1px;
+  }
+  @media (max-width:860px){
+    .side-actions{
+      flex-direction:row; align-items:center; justify-content:flex-start;
+      margin-top:12px; padding-top:12px;
+    }
+    .side-hint{ display:none; }
+  }
+
+  /* ---------- Main content ---------- */
+  main{ padding:0; display:flex; flex-direction:column; }
+  .content-scroll{ flex:1; padding:44px 56px 30px; max-width:920px; }
+  @media (max-width:860px){ .content-scroll{ padding:28px 20px 20px; } }
+
+  .eyebrow{ font-size:0.78rem; color:var(--rose); font-weight:600; margin-bottom:6px; }
+  .chapter{ display:none; animation: fade .3s ease; }
+  .chapter.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .lead{ font-size:1.08rem; color:var(--ink-soft); max-width:60ch; }
+
+  .divider{ height:1px; background:var(--line); margin:28px 0; border:none; }
+
+  /* cards / boxes */
+  .card{
+    background:var(--paper-deep);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    box-shadow:var(--shadow);
+  }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media (max-width:1024px){ .grid-4{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:760px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+  /* numa coluna so, o diagrama pode crescer: 152px e pequeno demais para
+     quem esta aprendendo a posicao dos dedos olhando no celular */
+  @media (max-width:520px){
+    .grid-4{ grid-template-columns:1fr; }
+    .chord-card svg{ width:200px; }
+  }
+
+  .tip{
+    border-left:3px solid var(--sage);
+    background:rgba(75,107,79,0.08);
+    padding:12px 16px;
+    border-radius:0 4px 4px 0;
+    font-size:0.94rem;
+    margin:18px 0;
+  }
+  .tip b{ color:var(--sage-deep); }
+  .warn{
+    border-left:3px solid var(--rose);
+    background:rgba(140,59,46,0.07);
+    padding:12px 16px;
+    border-radius:0 4px 4px 0;
+    font-size:0.94rem;
+    margin:18px 0;
+  }
+  .warn b{ color:var(--rose); }
+
+  .diagram-wrap{
+    display:flex; gap:26px; align-items:flex-start; flex-wrap:wrap;
+    margin:20px 0;
+  }
+  .diagram-wrap svg{ flex-shrink:0; }
+  .legend{ flex:1; min-width:220px; }
+  .legend ol{ margin:0; padding-left:0; list-style:none; counter-reset:leg; }
+  .legend li{
+    counter-increment:leg;
+    display:flex; gap:10px; margin-bottom:11px; font-size:0.92rem;
+  }
+  .legend .pin{
+    flex-shrink:0; width:22px; height:22px; border-radius:50%;
+    background:var(--wood-deep); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.72rem; font-weight:700; font-family:var(--font-body);
+  }
+  .legend b{ color:var(--wood-deep); }
+
+  /* chord grid */
+  .chord-card{ text-align:center; }
+  .chord-card h3{ font-size:1.3rem; margin-bottom:2px;}
+  .chord-card .sub{ font-size:0.78rem; color:var(--ink-soft); margin-bottom:10px;}
+  .chord-card svg{ margin:0 auto; max-width:100%; height:auto; }
+  .chord-card .note{ font-size:0.74rem; margin-top:8px; color:var(--rose); font-weight:600; }
+  .chord-card .note.all{ color:var(--sage-deep); }
+
+  /* legenda unica de simbolos, acima do grid de acordes */
+  .key-bar{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px;
+    background:var(--paper-deep); border:1px solid var(--line);
+    border-radius:var(--radius); padding:10px 16px; margin:0 0 18px;
+    font-size:0.78rem; color:var(--ink-soft);
+  }
+  .key-bar b{ color:var(--wood-deep); }
+  .key-bar span{ display:inline-flex; align-items:center; gap:6px; }
+  .key-bar i{
+    width:16px; height:16px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--brass); color:var(--wood-deep); font-style:normal;
+    font-size:0.62rem; font-weight:700; flex-shrink:0;
+  }
+  .key-bar i.o{ background:none; border:2px solid var(--wood-deep); }
+  .key-bar i.x{ background:none; color:var(--rose); font-size:0.85rem; }
+
+  /* legenda de simbolos do diagrama (cap. Ler um diagrama) */
+  .symbol-key .sym{
+    flex-shrink:0; width:24px; height:24px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-body); font-size:0.78rem; font-weight:700;
+  }
+  .symbol-key .sym-x{ color:var(--rose); font-size:1.05rem; }
+  .symbol-key .sym-o{ width:20px; height:20px; margin:2px; border:2px solid var(--wood-deep); }
+  .symbol-key .sym-dot{ background:var(--brass); color:var(--wood-deep); }
+
+  /* pares de afinacao relativa */
+  .pair-list{ list-style:none; margin:0; padding:0; }
+  .pair-list li{
+    display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+    padding:10px 0; border-bottom:1px solid var(--line); font-size:0.93rem;
+  }
+  .pair-list li:last-child{ border-bottom:none; }
+  .pair-list .from{ font-weight:600; color:var(--wood-deep); }
+  .pair-list .eq{ color:var(--sage); font-weight:700; }
+  .pair-list .to{ color:var(--ink-soft); }
+  .pair-list li.exception{
+    border-left:3px solid var(--rose); border-bottom-color:transparent;
+    background:rgba(140,59,46,0.07); padding-left:12px; margin:4px 0;
+  }
+
+  /* exercises */
+  .ex-list{ list-style:none; margin:0; padding:0; counter-reset:ex; }
+  .ex-list li{
+    counter-increment:ex;
+    display:flex; gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .ex-list li:last-child{ border-bottom:none; }
+  .ex-list .n{
+    flex-shrink:0; width:30px; height:30px; border-radius:50%;
+    background:var(--wood-deep); color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display); font-weight:600; font-size:0.95rem;
+  }
+  .ex-list h4{ margin:0 0 3px; font-size:1rem; }
+  .ex-list p{ margin:0; font-size:0.92rem; color:var(--ink-soft); }
+
+  /* rhythm pattern */
+  .beat-row{ display:flex; gap:8px; margin:18px 0; flex-wrap:wrap; }
+  .beat{
+    flex:1; min-width:64px;
+    background:var(--paper-deep); border:1px solid var(--line);
+    border-radius:6px; padding:14px 8px; text-align:center;
+  }
+  .beat .syll{ font-family:var(--font-display); font-weight:600; font-size:1.15rem; color:var(--wood-deep); }
+  .beat .sub{ font-size:0.68rem; color:var(--ink-soft); margin-top:3px;}
+  .beat.down .syll{ color:var(--rose); }
+  .beat.up .syll{ color:var(--sage-deep); }
+
+  /* FAQ */
+  details.faq{
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  details.faq summary{
+    cursor:pointer; font-family:var(--font-display); font-weight:600;
+    font-size:1.02rem; color:var(--wood-deep);
+    list-style:none;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  details.faq summary::-webkit-details-marker{ display:none; }
+  details.faq summary::after{
+    content:"+"; font-size:1.3rem; color:var(--brass); font-family:var(--font-body); font-weight:400;
+    transition:transform 0.2s ease;
+  }
+  details.faq[open] summary::after{ content:"–"; }
+  details.faq p{ margin-top:10px; font-size:0.94rem; color:var(--ink-soft); max-width:65ch; }
+
+  /* posture toggle */
+  .toggle-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--rose); color:var(--paper);
+    border:none; padding:9px 16px; border-radius:20px;
+    font-family:var(--font-body); font-weight:600; font-size:0.84rem;
+    cursor:pointer; margin-top:14px;
+  }
+  .toggle-btn:hover{ background:#752F24; }
+
+  /* footer nav */
+  .page-footer{
+    border-top:1px solid var(--line);
+    padding:18px 56px;
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--paper-deep);
+  }
+  @media (max-width:860px){ .page-footer{ padding:14px 20px; } }
+  .page-footer .prog{ font-size:0.8rem; color:var(--ink-soft); font-family:var(--font-body); }
+  .nav-btn{
+    background:var(--wood-deep); color:var(--paper);
+    border:none; padding:10px 18px; border-radius:20px;
+    font-family:var(--font-body); font-weight:600; font-size:0.85rem;
+    cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+  }
+  .nav-btn:disabled{ opacity:0.35; cursor:default; }
+  .nav-btn:hover:not(:disabled){ background:var(--brass); color:var(--wood-deep); }
+
+  .cover{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    min-height:60vh;
+  }
+  .cover .big{ font-size:clamp(2.1rem, 5vw, 3.2rem); line-height:1.05; max-width:12ch; }
+  .cover svg{ margin:0 0 26px; }
+
+  :focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
+
+  /* ---------- Impressao / PDF ---------- */
+  @media print{
+    @page{ margin:14mm 12mm; }
+    html,body{
+      background:#fff !important;
+      background-image:none !important;
+      color:#000;
+      font-size:10.5pt;
+    }
+    .shell{ display:block; min-height:0; }
+    .sidebar, .page-footer, .side-actions, .toggle-btn, .no-print{ display:none !important; }
+    main{ display:block; }
+    .content-scroll{ max-width:none; padding:0; }
+
+    /* a cartilha inteira sai numa tirada so, um capitulo por pagina */
+    .chapter{ display:block !important; animation:none !important; }
+    .chapter + .chapter{ break-before:page; page-break-before:always; }
+    .cover{ min-height:0; }
+
+    .card, .tip, .warn, .beat, .diagram-wrap, .ex-list li, details.faq, .chord-card, .key-bar{
+      break-inside:avoid; page-break-inside:avoid;
+    }
+    h1,h2,h3,h4{ break-after:avoid; page-break-after:avoid; }
+
+    /* economia de tinta: fundos chapados viram branco com borda */
+    .card, .beat, .key-bar{ background:#fff; box-shadow:none; border:1px solid #b9ab92; }
+    .tip, .warn{ background:#fff; }
+    .grid-4{ grid-template-columns:repeat(4,1fr); gap:10px; }
+    .grid-2{ grid-template-columns:1fr 1fr; }
+    .chord-card{ padding:14px 8px; }
+
+    details.faq summary::after{ content:"" !important; }
+    #posturaErrada{ display:block !important; }
+    a{ color:#000; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="20" cy="20" r="19" stroke="#D8B24C" stroke-width="1.4"/>
+        <path d="M20 8 v24 M14 12 v18 M26 12 v18" stroke="#D8B24C" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="20" cy="24" r="5.5" stroke="#D8B24C" stroke-width="1.3"/>
+      </svg>
+      <div class="t">Meus Primeiros<br>Acordes<small>CARTILHA DO ALUNO</small></div>
+    </div>
+    <nav class="chapters" id="chapterNav" aria-label="Capítulos da cartilha"></nav>
+
+    <div class="side-actions">
+      <button class="side-btn" id="btnPrint" type="button">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+          <path d="M4 6V2h8v4M4 12H2V7h12v5h-2M4 10h8v4H4z" stroke="currentColor" stroke-width="1.4"
+                stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        Imprimir / salvar em PDF
+      </button>
+      <p class="side-hint">
+        Imprime a cartilha <b>inteira</b>, um capítulo por página.<br>
+        Navegue com <kbd>&larr;</kbd> <kbd>&rarr;</kbd>
+      </p>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+    <div class="content-scroll" id="contentScroll">
+
+      <!-- 0. CAPA -->
+      <section class="chapter" data-chapter="capa">
+        <div class="cover">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none" aria-hidden="true" focusable="false">
+            <circle cx="45" cy="45" r="43" stroke="#8C5A2E" stroke-width="1.6"/>
+            <path d="M45 14 v62 M33 20 v50 M57 20 v50" stroke="#B8862E" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="45" cy="52" r="13" stroke="#8C5A2E" stroke-width="1.6"/>
+          </svg>
+          <div class="eyebrow">CARTILHA DO ALUNO · MÓDULO 1</div>
+          <h1 class="big">Bem-vindo ao seu primeiro passo no violão.</h1>
+          <p class="lead">Este material é seu guia de consulta: volte aqui sempre que tiver dúvida sobre postura, nomes das partes do violão, dedos das mãos ou acordes. Não é preciso decorar nada de uma vez — é para consultar, semana após semana.</p>
+          <div class="tip"><b>Como usar:</b> siga a ordem dos capítulos ao lado. Cada um constrói sobre o anterior — pular etapas costuma criar dúvidas mais na frente.</div>
+        </div>
+      </section>
+
+      <!-- 1. PARTES DO VIOLÃO -->
+      <section class="chapter" data-chapter="partes">
+        <div class="eyebrow">CAPÍTULO 1</div>
+        <h2>As partes do violão</h2>
+        <p class="lead">Conhecer o nome de cada parte ajuda a entender qualquer instrução do professor — "aperte perto do traste" ou "afine na tarraxa" só fazem sentido quando você sabe onde fica cada coisa.</p>
+
+        <div class="diagram-wrap">
+          <svg width="280" height="560" viewBox="0 0 280 560" fill="none" role="img" aria-labelledby="t-partes" xmlns="http://www.w3.org/2000/svg">
+            <title id="t-partes">Violão visto de frente, com nove pontos numerados indicando cabeça, tarraxas, pestana, braço, trastes, casas, cordas, corpo e ponte.</title>
+            <!-- headstock -->
+            <path d="M118,8 L162,8 L168,58 L112,58 Z" fill="#C99A5B" stroke="#4A3220" stroke-width="2"/>
+            <circle cx="105" cy="18" r="5" fill="#F2E9D3" stroke="#4A3220" stroke-width="2"/>
+            <circle cx="105" cy="33" r="5" fill="#F2E9D3" stroke="#4A3220" stroke-width="2"/>
+            <circle cx="105" cy="48" r="5" fill="#F2E9D3" stroke="#4A3220" stroke-width="2"/>
+            <circle cx="175" cy="18" r="5" fill="#F2E9D3" stroke="#4A3220" stroke-width="2"/>
+            <circle cx="175" cy="33" r="5" fill="#F2E9D3" stroke="#4A3220" stroke-width="2"/>
+            <circle cx="175" cy="48" r="5" fill="#F2E9D3" stroke="#4A3220" stroke-width="2"/>
+            <!-- nut -->
+            <rect x="122" y="58" width="36" height="5" fill="#4A3220"/>
+            <!-- neck -->
+            <rect x="126" y="63" width="28" height="230" fill="#C99A5B" stroke="#4A3220" stroke-width="2"/>
+            <!-- frets -->
+            <g stroke="#8C5A2E" stroke-width="2">
+              <line x1="126" y1="98" x2="154" y2="98"/>
+              <line x1="126" y1="133" x2="154" y2="133"/>
+              <line x1="126" y1="168" x2="154" y2="168"/>
+              <line x1="126" y1="203" x2="154" y2="203"/>
+              <line x1="126" y1="238" x2="154" y2="238"/>
+              <line x1="126" y1="273" x2="154" y2="273"/>
+            </g>
+            <!-- body -->
+            <path d="M96,300 C96,278 184,278 184,300
+                     C206,330 206,362 190,392
+                     C172,420 172,440 190,468
+                     C206,496 206,530 178,552
+                     C158,568 122,568 102,552
+                     C74,530 74,496 90,468
+                     C108,440 108,420 90,392
+                     C74,362 74,330 96,300 Z"
+                  fill="#DDB47A" stroke="#4A3220" stroke-width="2.4"/>
+            <!-- rosette / soundhole -->
+            <circle cx="140" cy="392" r="30" fill="none" stroke="#4A3220" stroke-width="2.4"/>
+            <circle cx="140" cy="392" r="34" fill="none" stroke="#B8862E" stroke-width="1.6"/>
+            <!-- bridge -->
+            <rect x="103" y="472" width="74" height="14" rx="3" fill="#4A3220"/>
+            <!-- strings -->
+            <g stroke="#8C7350" stroke-width="1.3">
+              <line x1="130" y1="63" x2="112" y2="472"/>
+              <line x1="135.6" y1="63" x2="123.6" y2="472"/>
+              <line x1="141.2" y1="63" x2="135.2" y2="472"/>
+              <line x1="146.8" y1="63" x2="146.8" y2="472"/>
+              <line x1="152.4" y1="63" x2="158.4" y2="472"/>
+              <line x1="158" y1="63" x2="170" y2="472"/>
+            </g>
+
+            <!-- pins -->
+            <g font-family="Work Sans" font-size="11" font-weight="700">
+              <circle cx="222" cy="14" r="10" fill="#4A3220"/><text x="222" y="18" fill="#F2E9D3" text-anchor="middle">1</text>
+              <line x1="150" y1="10" x2="211" y2="14" stroke="#4A3220" stroke-width="1"/>
+              <circle cx="222" cy="38" r="10" fill="#4A3220"/><text x="222" y="42" fill="#F2E9D3" text-anchor="middle">2</text>
+              <line x1="181" y1="34" x2="211" y2="38" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="222" cy="64" r="10" fill="#4A3220"/><text x="222" y="68" fill="#F2E9D3" text-anchor="middle">3</text>
+              <line x1="158" y1="60" x2="211" y2="64" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="220" cy="170" r="10" fill="#4A3220"/><text x="220" y="174" fill="#F2E9D3" text-anchor="middle">4</text>
+              <line x1="154" y1="170" x2="210" y2="170" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="220" cy="210" r="10" fill="#4A3220"/><text x="220" y="214" fill="#F2E9D3" text-anchor="middle">5</text>
+              <line x1="154" y1="203" x2="210" y2="210" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="245" cy="245" r="10" fill="#4A3220"/><text x="245" y="249" fill="#F2E9D3" text-anchor="middle">6</text>
+              <line x1="154" y1="245" x2="235" y2="245" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="245" cy="300" r="10" fill="#4A3220"/><text x="245" y="304" fill="#F2E9D3" text-anchor="middle">7</text>
+              <line x1="165" y1="300" x2="235" y2="300" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="230" cy="392" r="10" fill="#4A3220"/><text x="230" y="396" fill="#F2E9D3" text-anchor="middle">8</text>
+              <line x1="174" y1="392" x2="220" y2="392" stroke="#4A3220" stroke-width="1"/>
+
+              <circle cx="230" cy="479" r="10" fill="#4A3220"/><text x="230" y="483" fill="#F2E9D3" text-anchor="middle">9</text>
+              <line x1="177" y1="479" x2="220" y2="479" stroke="#4A3220" stroke-width="1"/>
+            </g>
+          </svg>
+
+          <div class="legend">
+            <ol>
+              <li><span class="pin">1</span><span><b>Cabeça</b> — onde ficam as tarraxas, no topo do violão.</span></li>
+              <li><span class="pin">2</span><span><b>Tarraxas</b> — giram para afinar cada corda (apertar/afrouxar).</span></li>
+              <li><span class="pin">3</span><span><b>Pestana</b> — sulco que separa a cabeça do braço e guia as cordas.</span></li>
+              <li><span class="pin">4</span><span><b>Braço</b> — parte longa onde a mão esquerda pressiona as cordas.</span></li>
+              <li><span class="pin">5</span><span><b>Trastes</b> — as barrinhas de metal cravadas no braço.</span></li>
+              <li><span class="pin">6</span><span><b>Casas</b> — os espaços entre dois trastes; é ali que o dedo pressiona.</span></li>
+              <li><span class="pin">7</span><span><b>Cordas</b> — numeradas de 1 (mais fina/aguda) a 6 (mais grossa/grave).</span></li>
+              <li><span class="pin">8</span><span><b>Corpo / Boca (roseta)</b> — a caixa de madeira que amplifica o som.</span></li>
+              <li><span class="pin">9</span><span><b>Ponte</b> — onde as cordas são presas na base do corpo.</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tip"><b>Dica:</b> as cordas são contadas de baixo para cima quando você olha o violão na posição de tocar — a mais fina (corda 1, "Mi agudo") fica embaixo, a mais grossa (corda 6, "Mi grave") fica em cima.</div>
+      </section>
+
+      <!-- 2. POSTURA -->
+      <section class="chapter" data-chapter="postura">
+        <div class="eyebrow">CAPÍTULO 2</div>
+        <h2>Postura correta</h2>
+        <p class="lead">Postura errada não impede de tocar hoje — mas cria dor e vícios difíceis de corrigir depois. Vale o cuidado desde a primeira semana.</p>
+
+        <div class="diagram-wrap">
+          <svg width="230" height="300" viewBox="0 0 230 300" fill="none" role="img" aria-labelledby="t-postura" xmlns="http://www.w3.org/2000/svg">
+            <title id="t-postura">Pessoa sentada com o violão apoiado na perna, costas retas e braço do instrumento inclinado para cima.</title>
+            <!-- chair -->
+            <rect x="40" y="210" width="90" height="10" fill="#C99A5B" stroke="#4A3220" stroke-width="2"/>
+            <rect x="44" y="220" width="8" height="55" fill="#C99A5B" stroke="#4A3220" stroke-width="2"/>
+            <rect x="112" y="220" width="8" height="55" fill="#C99A5B" stroke="#4A3220" stroke-width="2"/>
+            <!-- legs -->
+            <path d="M60,215 L58,270 L48,275" stroke="#4A3220" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M100,215 L120,268 L135,275" stroke="#4A3220" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <!-- torso -->
+            <path d="M62,90 C58,130 60,170 66,210" stroke="#8C3B2E" stroke-width="14" stroke-linecap="round" fill="none"/>
+            <!-- head -->
+            <circle cx="66" cy="66" r="20" fill="#DDB47A" stroke="#4A3220" stroke-width="2"/>
+            <!-- back guide line -->
+            <line x1="30" y1="90" x2="34" y2="205" stroke="#4B6B4F" stroke-width="2" stroke-dasharray="4 3"/>
+            <!-- guitar body on leg -->
+            <ellipse cx="120" cy="205" rx="46" ry="30" fill="#DDB47A" stroke="#4A3220" stroke-width="2.4" transform="rotate(-18 120 205)"/>
+            <circle cx="118" cy="200" r="10" fill="none" stroke="#4A3220" stroke-width="2" transform="rotate(-18 118 200)"/>
+            <!-- neck of guitar going up -->
+            <rect x="150" y="70" width="14" height="120" rx="3" fill="#C99A5B" stroke="#4A3220" stroke-width="2" transform="rotate(-18 150 70)"/>
+            <!-- right arm over body -->
+            <path d="M76,110 C100,130 110,160 128,180" stroke="#DDB47A" stroke-width="10" stroke-linecap="round" fill="none"/>
+            <!-- left arm to neck -->
+            <path d="M60,110 C90,95 120,80 148,95" stroke="#DDB47A" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+            <!-- pins -->
+            <g font-family="Work Sans" font-size="11" font-weight="700">
+              <circle cx="20" cy="140" r="10" fill="#4A3220"/><text x="20" y="144" fill="#F2E9D3" text-anchor="middle">1</text>
+              <circle cx="70" cy="35" r="10" fill="#4A3220"/><text x="70" y="39" fill="#F2E9D3" text-anchor="middle">2</text>
+              <circle cx="185" cy="60" r="10" fill="#4A3220"/><text x="185" y="64" fill="#F2E9D3" text-anchor="middle">3</text>
+              <circle cx="150" cy="150" r="10" fill="#4A3220"/><text x="150" y="154" fill="#F2E9D3" text-anchor="middle">4</text>
+            </g>
+          </svg>
+
+          <div class="legend">
+            <ol>
+              <li><span class="pin">1</span><span><b>Costas retas</b> — apoiadas ou não na cadeira, sem curvar para acompanhar o violão.</span></li>
+              <li><span class="pin">2</span><span><b>Ombros relaxados</b> — sem levantar o ombro direito para "alcançar" o instrumento.</span></li>
+              <li><span class="pin">3</span><span><b>Braço do violão inclinado para cima</b> — nunca deixe a cabeça do violão caindo para baixo.</span></li>
+              <li><span class="pin">4</span><span><b>Violão apoiado na perna</b>, encaixado na curva do corpo — não seguro apenas pelos braços.</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <button class="toggle-btn" id="btnPostura" type="button" aria-expanded="false" aria-controls="posturaErrada">⚠ Ver erro comum de postura</button>
+        <div id="posturaErrada" class="warn" hidden>
+          <b>Evite:</b> curvar as costas para "olhar de perto" a mão esquerda, deixar o braço do violão apontando para o chão, ou prender o violão só com o antebraço direito, sem apoio na perna. Esses três hábitos geram tensão no pescoço e no ombro depois de poucos minutos.
+        </div>
+      </section>
+
+      <!-- 3. MÃOS -->
+      <section class="chapter" data-chapter="maos">
+        <div class="eyebrow">CAPÍTULO 3</div>
+        <h2>Suas mãos: esquerda e direita</h2>
+        <p class="lead">Cada mão tem uma "linguagem" própria de nomear os dedos. É essa nomenclatura que aparece em qualquer diagrama de acorde ou instrução de dedilhado.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="font-size:1.05rem;">Mão esquerda — pressiona as cordas</h3>
+            <svg width="180" height="200" viewBox="0 0 180 200" role="img" aria-labelledby="t-mao-esq" xmlns="http://www.w3.org/2000/svg">
+              <title id="t-mao-esq">Mão esquerda com os dedos numerados de 1 a 4 e o polegar marcado com P.</title>
+              <path d="M60,150 C50,150 45,140 45,120 L45,80 C45,74 50,70 55,70 C60,70 64,74 64,80 L64,60 C64,54 69,50 74,50 C79,50 83,54 83,60 L83,55 C83,49 88,45 93,45 C98,45 102,49 102,55 L102,65 C102,59 107,55 112,55 C117,55 121,59 121,65 L121,120 C121,150 105,168 90,168 C78,168 66,164 60,150 Z"
+                    fill="#DDB47A" stroke="#4A3220" stroke-width="2.2"/>
+              <!-- thumb -->
+              <path d="M45,110 C30,105 22,95 24,84 C26,75 36,74 42,82 L52,98" fill="#DDB47A" stroke="#4A3220" stroke-width="2.2"/>
+              <g font-family="Work Sans" font-size="12" font-weight="700" text-anchor="middle">
+                <circle cx="28" cy="88" r="11" fill="#8C3B2E"/><text x="28" y="92" fill="#F2E9D3">P</text>
+                <circle cx="55" cy="63" r="11" fill="#4A3220"/><text x="55" y="67" fill="#F2E9D3">1</text>
+                <circle cx="74" cy="43" r="11" fill="#4A3220"/><text x="74" y="47" fill="#F2E9D3">2</text>
+                <circle cx="93" cy="38" r="11" fill="#4A3220"/><text x="93" y="42" fill="#F2E9D3">3</text>
+                <circle cx="112" cy="48" r="11" fill="#4A3220"/><text x="112" y="52" fill="#F2E9D3">4</text>
+              </g>
+            </svg>
+            <ul style="font-size:0.88rem; padding-left:18px; margin-top:6px;">
+              <li><b>1</b> — indicador</li>
+              <li><b>2</b> — médio</li>
+              <li><b>3</b> — anelar</li>
+              <li><b>4</b> — mínimo (mindinho)</li>
+              <li><b>P</b> (vermelho) — polegar, fica atrás do braço, como apoio</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 style="font-size:1.05rem;">Mão direita — toca as cordas</h3>
+            <svg width="180" height="200" viewBox="0 0 180 200" role="img" aria-labelledby="t-mao-dir" xmlns="http://www.w3.org/2000/svg">
+              <title id="t-mao-dir">Mão direita com os dedos marcados P, I, M e A, e o mínimo sem uso.</title>
+              <path d="M120,150 C130,150 135,140 135,120 L135,80 C135,74 130,70 125,70 C120,70 116,74 116,80 L116,60 C116,54 111,50 106,50 C101,50 97,54 97,60 L97,55 C97,49 92,45 87,45 C82,45 78,49 78,55 L78,65 C78,59 73,55 68,55 C63,55 59,59 59,65 L59,120 C59,150 75,168 90,168 C102,168 114,164 120,150 Z"
+                    fill="#DDB47A" stroke="#4A3220" stroke-width="2.2"/>
+              <path d="M135,110 C150,105 158,95 156,84 C154,75 144,74 138,82 L128,98" fill="#DDB47A" stroke="#4A3220" stroke-width="2.2"/>
+              <g font-family="Work Sans" font-size="12" font-weight="700" text-anchor="middle">
+                <circle cx="152" cy="88" r="11" fill="#8C3B2E"/><text x="152" y="92" fill="#F2E9D3">P</text>
+                <circle cx="125" cy="63" r="11" fill="#B8862E"/><text x="125" y="67" fill="#4A3220">I</text>
+                <circle cx="106" cy="43" r="11" fill="#B8862E"/><text x="106" y="47" fill="#4A3220">M</text>
+                <circle cx="87" cy="38" r="11" fill="#B8862E"/><text x="87" y="42" fill="#4A3220">A</text>
+                <circle cx="68" cy="48" r="11" fill="#999" opacity="0.6"/><text x="68" y="52" fill="#fff">—</text>
+              </g>
+            </svg>
+            <ul style="font-size:0.88rem; padding-left:18px; margin-top:6px;">
+              <li><b>P</b> — polegar: toca as 3 cordas graves (6, 5, 4)</li>
+              <li><b>I</b> — indicador: toca a corda 3</li>
+              <li><b>M</b> — médio: toca a corda 2</li>
+              <li><b>A</b> — anelar: toca a corda 1</li>
+              <li>Mínimo — não é usado no dedilhado básico</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip"><b>Por que letras na mão direita?</b> Vem do espanhol: Pulgar, Índice, Medio, Anular. É padrão internacional em partituras e cifras — vale a pena memorizar cedo.</div>
+      </section>
+
+      <!-- 4. BRAÇO / CASAS / CORDAS -->
+      <section class="chapter" data-chapter="braco">
+        <div class="eyebrow">CAPÍTULO 4</div>
+        <h2>O braço, as casas e o nome das cordas</h2>
+        <p class="lead">Todo diagrama de acorde é, na prática, um "mapa" desse braço visto de frente. Entender essa grade é o que permite ler qualquer acorde novo sozinho.</p>
+
+        <div class="diagram-wrap">
+          <svg width="300" height="260" viewBox="0 0 300 260" role="img" aria-labelledby="t-braco" xmlns="http://www.w3.org/2000/svg">
+            <title id="t-braco">Braço do violão visto de frente: seis cordas verticais nomeadas E, A, D, G, B e e, e quatro casas numeradas.</title>
+            <!-- nut -->
+            <rect x="40" y="30" width="220" height="8" fill="#4A3220"/>
+            <!-- frets -->
+            <g stroke="#8C5A2E" stroke-width="3">
+              <line x1="40" y1="75" x2="260" y2="75"/>
+              <line x1="40" y1="120" x2="260" y2="120"/>
+              <line x1="40" y1="165" x2="260" y2="165"/>
+              <line x1="40" y1="210" x2="260" y2="210"/>
+            </g>
+            <!-- strings -->
+            <g stroke="#4A3220" stroke-width="1.6">
+              <line x1="40" y1="30" x2="40" y2="210"/>
+              <line x1="84" y1="30" x2="84" y2="210"/>
+              <line x1="128" y1="30" x2="128" y2="210"/>
+              <line x1="172" y1="30" x2="172" y2="210"/>
+              <line x1="216" y1="30" x2="216" y2="210"/>
+              <line x1="260" y1="30" x2="260" y2="210"/>
+            </g>
+            <!-- casa numbers -->
+            <g font-family="Work Sans" font-size="11" fill="#8C5A2E" text-anchor="start">
+              <text x="2" y="56">1ª casa</text>
+              <text x="2" y="101">2ª casa</text>
+              <text x="2" y="146">3ª casa</text>
+              <text x="2" y="191">4ª casa</text>
+            </g>
+            <!-- string names top -->
+            <g font-family="Work Sans" font-size="12" font-weight="700" fill="#4A3220" text-anchor="middle">
+              <text x="40" y="22">E</text>
+              <text x="84" y="22">A</text>
+              <text x="128" y="22">D</text>
+              <text x="172" y="22">G</text>
+              <text x="216" y="22">B</text>
+              <text x="260" y="22">e</text>
+            </g>
+            <g font-family="Work Sans" font-size="11" fill="#6B5340" text-anchor="middle">
+              <text x="40" y="235">6ª</text>
+              <text x="84" y="235">5ª</text>
+              <text x="128" y="235">4ª</text>
+              <text x="172" y="235">3ª</text>
+              <text x="216" y="235">2ª</text>
+              <text x="260" y="235">1ª</text>
+            </g>
+          </svg>
+
+          <div class="legend">
+            <ol>
+              <li><span class="pin" style="background:var(--sage-deep)">•</span><span><b>Pestana</b> — linha grossa no topo; é o "traste zero".</span></li>
+              <li><span class="pin" style="background:var(--sage-deep)">•</span><span><b>Casas</b> — os quadrados numerados 1ª a 4ª; é onde o dedo pressiona, sempre perto do traste de baixo.</span></li>
+              <li><span class="pin" style="background:var(--sage-deep)">•</span><span><b>Cordas soltas</b> — no diagrama, da esquerda (6ª, mais grossa) para a direita (1ª, mais fina): <b>Mi · Lá · Ré · Sol · Si · Mi</b>. Com o violão na posição de tocar, essa mesma 6ª corda é a de <b>cima</b>: o diagrama é o braço em pé, não deitado.</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tip"><b>Macete para decorar:</b> "Mi Lá Ré Sol Si Mi" — muita gente usa a frase "<i>Mato A Rã De Sino Mi</i>" ou canta na ordem enquanto afina, corda por corda, até decorar de ouvido. É exatamente essa ordem que você usa no <a href="#afinacao">próximo capítulo</a>, para afinar.</div>
+      </section>
+
+      <!-- 5. AFINAÇÃO -->
+      <section class="chapter" data-chapter="afinacao">
+        <div class="eyebrow">CAPÍTULO 5</div>
+        <h2>Afinar o violão</h2>
+        <p class="lead">Violão desafinado faz o acorde certo soar errado — e o aluno concluir que o erro é dele. Confira a afinação <b>toda vez</b> que for tocar: instrumento novo e corda nova desafinam rápido nas primeiras semanas.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="font-size:1.05rem;">Que nota cada corda dá solta</h3>
+            <ul class="pair-list">
+              <li><span class="from">6ª (mais grossa)</span> <span class="eq">=</span> <span class="to">Mi grave · <b>E</b></span></li>
+              <li><span class="from">5ª</span> <span class="eq">=</span> <span class="to">Lá · <b>A</b></span></li>
+              <li><span class="from">4ª</span> <span class="eq">=</span> <span class="to">Ré · <b>D</b></span></li>
+              <li><span class="from">3ª</span> <span class="eq">=</span> <span class="to">Sol · <b>G</b></span></li>
+              <li><span class="from">2ª</span> <span class="eq">=</span> <span class="to">Si · <b>B</b></span></li>
+              <li><span class="from">1ª (mais fina)</span> <span class="eq">=</span> <span class="to">Mi agudo · <b>E</b></span></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 style="font-size:1.05rem;">Para que lado girar a tarraxa</h3>
+            <p style="font-size:0.93rem; margin-bottom:10px;">Antes de girar qualquer coisa, toque a corda e <b>veja qual tarraxa se move</b> — apertar a tarraxa errada é o jeito mais comum de arrebentar uma corda na primeira semana.</p>
+            <ul style="font-size:0.9rem; padding-left:18px; margin:0;">
+              <li><b>Apertar</b> (esticar a corda) — o som fica <b>mais agudo</b>.</li>
+              <li><b>Afrouxar</b> — o som fica <b>mais grave</b>.</li>
+              <li>Gire <b>pouco de cada vez</b>, tocando a corda o tempo todo para ouvir para onde a nota está indo.</li>
+              <li>Chegue na nota <b>subindo</b>: se passou do ponto, afrouxe abaixo dela e suba de novo. A afinação segura melhor assim.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <h3>Jeito 1 — com afinador (o recomendado no início)</h3>
+        <p>Um afinador de clipe (preso na cabeça do violão) ou um aplicativo de celular mostram a letra da nota e se ela está alta ou baixa. É o caminho mais rápido, e o que menos arrisca fixar um ouvido errado no começo.</p>
+        <div class="warn"><b>Dois cuidados:</b> confira a <b>letra exata</b> — <b>E</b> não é o mesmo que <b>E♭</b> nem que <b>D♯</b>; e confira se não está afinando uma oitava acima ou abaixo (corda frouxa demais, ou esticada demais). Se a corda ficar dura bem antes de chegar na nota, pare: quase sempre é a tarraxa errada.</div>
+
+        <h3>Jeito 2 — afinação relativa, pela 5ª casa</h3>
+        <p>Serve quando não há afinador por perto. Deixa o violão afinado <b>consigo mesmo</b> — os acordes soam certos entre si, mesmo que o conjunto todo fique um pouco acima ou abaixo do tom padrão. Comece pela 6ª corda: deixe-a no tom de referência que você tiver (afinador, piano, outro violão) e ajuste as demais a partir dela.</p>
+
+        <div class="diagram-wrap">
+          <svg width="290" height="280" viewBox="0 0 290 280" role="img" aria-labelledby="t-afinacao" xmlns="http://www.w3.org/2000/svg">
+            <title id="t-afinacao">Braço do violão mostrando a casa 5 pressionada nas cordas 6, 5, 4 e 2 e a casa 4 na corda 3, com setas apontando para a corda solta seguinte.</title>
+            <defs>
+              <marker id="setaAfin" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,1 L9,5 L0,9 z" fill="#4B6B4F"/>
+              </marker>
+            </defs>
+
+            <!-- nome das cordas soltas -->
+            <g font-family="Work Sans" font-size="12" font-weight="700" fill="#4A3220" text-anchor="middle">
+              <text x="40" y="15">E</text>
+              <text x="84" y="15">A</text>
+              <text x="128" y="15">D</text>
+              <text x="172" y="15">G</text>
+              <text x="216" y="15">B</text>
+              <text x="260" y="15">e</text>
+            </g>
+
+            <!-- pestana -->
+            <rect x="40" y="36" width="220" height="8" fill="#4A3220"/>
+            <!-- trastes -->
+            <g stroke="#8C5A2E" stroke-width="3">
+              <line x1="40" y1="84" x2="260" y2="84"/>
+              <line x1="40" y1="124" x2="260" y2="124"/>
+              <line x1="40" y1="164" x2="260" y2="164"/>
+              <line x1="40" y1="204" x2="260" y2="204"/>
+              <line x1="40" y1="244" x2="260" y2="244"/>
+            </g>
+            <!-- cordas -->
+            <g stroke="#4A3220" stroke-width="1.6">
+              <line x1="40" y1="36" x2="40" y2="244"/>
+              <line x1="84" y1="36" x2="84" y2="244"/>
+              <line x1="128" y1="36" x2="128" y2="244"/>
+              <line x1="172" y1="36" x2="172" y2="244"/>
+              <line x1="216" y1="36" x2="216" y2="244"/>
+              <line x1="260" y1="36" x2="260" y2="244"/>
+            </g>
+            <!-- numero das casas -->
+            <g font-family="Work Sans" font-size="10" fill="#8C5A2E" text-anchor="end">
+              <text x="32" y="68">1ª</text>
+              <text x="32" y="108">2ª</text>
+              <text x="32" y="148">3ª</text>
+              <text x="32" y="188">4ª</text>
+              <text x="32" y="228">5ª</text>
+            </g>
+
+            <!-- setas: casa pressionada -> corda solta seguinte -->
+            <g fill="none" stroke="#4B6B4F" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#setaAfin)">
+              <path d="M52,218 C86,196 80,100 84,30"/>
+              <path d="M96,218 C130,196 124,100 128,30"/>
+              <path d="M140,218 C174,196 168,100 172,30"/>
+              <path d="M184,178 C218,158 212,100 216,30"/>
+              <path d="M228,218 C262,196 256,100 260,30"/>
+            </g>
+
+            <!-- casas a pressionar; a 3a corda e a excecao: casa 4 -->
+            <g font-family="Work Sans" font-size="12" font-weight="700" text-anchor="middle">
+              <circle cx="40" cy="224" r="12" fill="#B8862E"/><text x="40" y="228" fill="#4A3220">5</text>
+              <circle cx="84" cy="224" r="12" fill="#B8862E"/><text x="84" y="228" fill="#4A3220">5</text>
+              <circle cx="128" cy="224" r="12" fill="#B8862E"/><text x="128" y="228" fill="#4A3220">5</text>
+              <circle cx="172" cy="184" r="12" fill="#8C3B2E"/><text x="172" y="188" fill="#F2E9D3">4</text>
+              <circle cx="216" cy="224" r="12" fill="#B8862E"/><text x="216" y="228" fill="#4A3220">5</text>
+            </g>
+
+            <!-- numero das cordas -->
+            <g font-family="Work Sans" font-size="11" fill="#6B5340" text-anchor="middle">
+              <text x="40" y="268">6ª</text>
+              <text x="84" y="268">5ª</text>
+              <text x="128" y="268">4ª</text>
+              <text x="172" y="268">3ª</text>
+              <text x="216" y="268">2ª</text>
+              <text x="260" y="268">1ª</text>
+            </g>
+          </svg>
+
+          <div class="legend">
+            <ul class="pair-list">
+              <li><span class="from">6ª corda, casa 5</span> <span class="eq">soa igual à</span> <span class="to">5ª solta (Lá)</span></li>
+              <li><span class="from">5ª corda, casa 5</span> <span class="eq">soa igual à</span> <span class="to">4ª solta (Ré)</span></li>
+              <li><span class="from">4ª corda, casa 5</span> <span class="eq">soa igual à</span> <span class="to">3ª solta (Sol)</span></li>
+              <li class="exception"><span class="from">3ª corda, casa <b>4</b></span> <span class="eq">soa igual à</span> <span class="to">2ª solta (Si)</span> <b style="color:var(--rose)">← a exceção</b></li>
+              <li><span class="from">2ª corda, casa 5</span> <span class="eq">soa igual à</span> <span class="to">1ª solta (Mi)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip"><b>A exceção da 3ª corda:</b> só ela usa a casa <b>4</b>, não a 5. Quem esquece disso afina a 2ª corda um tom inteiro fora e depois não entende por que o acorde de Sol soa estranho. Se der para decorar uma coisa só deste capítulo, decore esta.</div>
+
+        <div class="warn"><b>Antes de apertar demais:</b> a corda tem limite. Se você está girando bastante e a nota quase não sobe, provavelmente está na tarraxa errada — ou a corda está prestes a arrebentar. Pare, confira qual corda se move quando você gira, e recomece.</div>
+      </section>
+
+      <!-- 6. LER CIFRA -->
+      <section class="chapter" data-chapter="cifras">
+        <div class="eyebrow">CAPÍTULO 6</div>
+        <h2>Como ler um diagrama de acorde</h2>
+        <p class="lead">O diagrama de acorde é exatamente o braço do capítulo 4, agora com símbolos indicando onde colocar cada dedo. Abaixo, um acorde de verdade: o <b>Dó maior (C)</b>, que você vai formar no próximo capítulo.</p>
+
+        <div class="diagram-wrap">
+          <svg width="210" height="200" viewBox="0 0 210 200" role="img" aria-labelledby="t-cifra" xmlns="http://www.w3.org/2000/svg">
+            <title id="t-cifra">Diagrama do acorde de Dó maior: X na 6ª corda; dedo 3 na 3ª casa da 5ª corda; dedo 2 na 2ª casa da 4ª corda; 3ª corda solta; dedo 1 na 1ª casa da 2ª corda; 1ª corda solta.</title>
+
+            <!-- linha de simbolos acima da pestana -->
+            <g font-family="Work Sans" font-size="14" font-weight="700" text-anchor="middle">
+              <text x="30" y="23" fill="#8C3B2E">✕</text>
+              <circle cx="120" cy="18" r="7" fill="none" stroke="#4A3220" stroke-width="2"/>
+              <circle cx="180" cy="18" r="7" fill="none" stroke="#4A3220" stroke-width="2"/>
+            </g>
+
+            <!-- pestana -->
+            <rect x="20" y="28" width="170" height="6" fill="#4A3220"/>
+            <!-- trastes -->
+            <g stroke="#8C5A2E" stroke-width="2.5">
+              <line x1="20" y1="70" x2="190" y2="70"/>
+              <line x1="20" y1="112" x2="190" y2="112"/>
+              <line x1="20" y1="154" x2="190" y2="154"/>
+            </g>
+            <!-- cordas -->
+            <g stroke="#4A3220" stroke-width="1.4">
+              <line x1="30" y1="34" x2="30" y2="154"/>
+              <line x1="60" y1="34" x2="60" y2="154"/>
+              <line x1="90" y1="34" x2="90" y2="154"/>
+              <line x1="120" y1="34" x2="120" y2="154"/>
+              <line x1="150" y1="34" x2="150" y2="154"/>
+              <line x1="180" y1="34" x2="180" y2="154"/>
+            </g>
+
+            <!-- dedos -->
+            <g font-family="Work Sans" font-size="12" font-weight="700" text-anchor="middle" fill="#4A3220">
+              <circle cx="60" cy="133" r="13" fill="#B8862E"/><text x="60" y="138">3</text>
+              <circle cx="90" cy="91" r="13" fill="#B8862E"/><text x="90" y="96">2</text>
+              <circle cx="150" cy="52" r="13" fill="#B8862E"/><text x="150" y="57">1</text>
+            </g>
+
+            <!-- numero das cordas -->
+            <g font-family="Work Sans" font-size="10" fill="#6B5340" text-anchor="middle">
+              <text x="30" y="174">6ª</text>
+              <text x="60" y="174">5ª</text>
+              <text x="90" y="174">4ª</text>
+              <text x="120" y="174">3ª</text>
+              <text x="150" y="174">2ª</text>
+              <text x="180" y="174">1ª</text>
+            </g>
+            <text x="105" y="194" font-family="Work Sans" font-size="11" font-weight="600" fill="#8C5A2E" text-anchor="middle">acorde de Dó maior (C)</text>
+          </svg>
+
+          <div class="legend">
+            <ol class="symbol-key">
+              <li><span class="sym sym-x">✕</span><span><b>X</b> — corda que não deve soar. Aqui, a 6ª: ou você começa a batida na 5ª, ou abafa a 6ª com a lateral do dedo.</span></li>
+              <li><span class="sym sym-o"></span><span><b>O</b> — corda solta: toca normalmente, sem pressionar casa nenhuma. Aqui, a 3ª e a 1ª.</span></li>
+              <li><span class="sym sym-dot">2</span><span><b>Bolinha com número</b> — pressione essa casa com o dedo indicado (1 = indicador, 2 = médio, 3 = anelar, 4 = mínimo).</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tip"><b>Lembre-se:</b> o diagrama é sempre visto como se o violão estivesse <b>de pé, na sua frente</b> — corda mais grossa (6ª) à esquerda, mais fina (1ª) à direita. Na posição de tocar, essa mesma 6ª corda fica em cima.</div>
+
+        <div class="tip"><b>Onde o dedo pressiona:</b> dentro da casa e <b>perto do traste de baixo</b> — nunca em cima do traste, nunca no meio da casa. Perto do traste o som sai limpo com menos força.</div>
+      </section>
+
+      <!-- 7. PRIMEIROS ACORDES -->
+      <section class="chapter" data-chapter="acordes">
+        <div class="eyebrow">CAPÍTULO 7</div>
+        <h2>Seus primeiros 4 acordes</h2>
+        <p class="lead">Com esses quatro, dezenas de músicas já ficam ao seu alcance. Pratique um de cada vez, sem pressa — troque para o próximo só quando conseguir formar o atual sem olhar tanto para a mão.</p>
+
+        <div class="key-bar">
+          <b>Legenda:</b>
+          <span><i>1</i>indicador</span><span><i>2</i>médio</span><span><i>3</i>anelar</span><span><i>4</i>mínimo</span>
+          <span><i class="o"></i>corda solta</span><span><i class="x">✕</i>não tocar</span>
+        </div>
+        <div class="grid-4" id="chordGrid"></div>
+
+        <div class="tip"><b>Ordem sugerida de estudo:</b> Mi menor (Em) → Dó (C) → Sol (G) → Ré (D). Essa ordem começa pelo acorde mais fácil fisicamente e vai aumentando o alcance da mão aos poucos.</div>
+      </section>
+
+      <!-- 8. EXERCÍCIOS -->
+      <section class="chapter" data-chapter="exercicios">
+        <div class="eyebrow">CAPÍTULO 8</div>
+        <h2>Exercícios de troca de acordes</h2>
+        <p class="lead">O maior desafio do início não é formar um acorde — é trocar de um para o outro sem parar a música. Estes exercícios treinam exatamente isso.</p>
+
+        <ol class="ex-list">
+          <li>
+            <span class="n">1</span>
+            <div><h4>Formar e desmanchar</h4><p>Forme o acorde de Em, solte a mão completamente, forme de novo. Repita 10 vezes olhando para a mão, sem pressa nenhuma.</p></div>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <div><h4>Troca cega de 2 acordes</h4><p>Alterne Em → C → Em → C, contando "1, 2, 3, 4" em voz alta a cada troca, sem tocar ainda — só formando a mão.</p></div>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <div><h4>Troca com som</h4><p>Repita o exercício 2, agora tocando as cordas após formar cada acorde. Se o som sair abafado, ajuste a pressão e a posição dos dedos antes de acelerar.</p></div>
+          </li>
+          <li>
+            <span class="n">4</span>
+            <div><h4>A roda dos 4 acordes</h4><p>Faça a sequência completa Em → C → G → D → Em, uma vez por dia, cronometrando o tempo. A meta não é velocidade — é reduzir o tempo aos poucos, dia após dia.</p></div>
+          </li>
+          <li>
+            <span class="n">5</span>
+            <div><h4>Dedo-guia</h4><p>Observe se algum dedo permanece na mesma corda ao trocar de acorde (por exemplo, entre C e Em o dedo 2 quase não se move). Usar esse "dedo-guia" torna a troca muito mais rápida.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 9. RITMO -->
+      <section class="chapter" data-chapter="ritmo">
+        <div class="eyebrow">CAPÍTULO 9</div>
+        <h2>Seu primeiro padrão de ritmo</h2>
+        <p class="lead">Este é o padrão mais usado da música popular brasileira. Pratique primeiro batendo na perna, só depois no violão.</p>
+
+        <div class="beat-row">
+          <div class="beat down"><div class="syll">Tum</div><div class="sub">baixo, para baixo</div></div>
+          <div class="beat up"><div class="syll">Tchá</div><div class="sub">acorde, para cima</div></div>
+          <div class="beat down"><div class="syll">Tum</div><div class="sub">baixo, para baixo</div></div>
+          <div class="beat down"><div class="syll">Tum</div><div class="sub">baixo, para baixo</div></div>
+          <div class="beat up"><div class="syll">Tchá</div><div class="sub">acorde, para cima</div></div>
+        </div>
+
+        <div class="tip"><b>Como praticar:</b> comece bem devagar, falando "tum-tchá-tum-tum-tchá" em voz alta no mesmo ritmo que vai tocar. Só aumente a velocidade quando conseguir repetir 10 vezes seguidas sem travar.</div>
+        <div class="warn"><b>Erro comum:</b> tentar acelerar antes de estar automático. Ritmo rápido e errado atrapalha mais do que ritmo lento e certo — não tenha pressa aqui.</div>
+      </section>
+
+      <!-- 10. DÚVIDAS -->
+      <section class="chapter" data-chapter="duvidas">
+        <div class="eyebrow">CAPÍTULO 10</div>
+        <h2>Dúvidas frequentes</h2>
+        <p class="lead">As perguntas que mais aparecem nas primeiras semanas de aula.</p>
+
+        <div>
+          <details class="faq">
+            <summary>Meus dedos doem muito, é normal?</summary>
+            <p>Sim, nas primeiras 2–3 semanas é esperado sentir desconforto na ponta dos dedos da mão esquerda — a pele ainda não formou calo. Pratique um pouco todo dia (mesmo que pouco tempo) em vez de sessões longas e espaçadas; isso acelera a formação do calo sem machucar.</p>
+          </details>
+          <details class="faq">
+            <summary>O som sai abafado, o que eu faço?</summary>
+            <p>Normalmente é falta de pressão do dedo, dedo encostando em outra corda sem querer, ou o dedo posicionado longe demais do traste. Pressione bem perto do traste seguinte (nunca em cima dele) e confira se os outros dedos não estão "descansando" sobre outra corda.</p>
+          </details>
+          <details class="faq">
+            <summary>Preciso saber teoria musical antes de tocar?</summary>
+            <p>Não. Teoria ajuda a entender o "porquê" das coisas, mas não é pré-requisito. Neste método, a prática vem primeiro; a teoria aparece aos poucos, sempre explicando algo que você já está tocando.</p>
+          </details>
+          <details class="faq">
+            <summary>Quanto tempo por dia devo praticar?</summary>
+            <p>20 a 30 minutos por dia, 5 vezes por semana, rende muito mais do que 3 horas de uma vez só no fim de semana. Constância importa mais que duração.</p>
+          </details>
+          <details class="faq">
+            <summary>Posso pular direto para acordes com pestana?</summary>
+            <p>Não é recomendado. A pestana exige força e controle que se constroem tocando os acordes abertos primeiro. Tentar antes da hora costuma gerar frustração e abandono.</p>
+          </details>
+          <details class="faq">
+            <summary>Meu violão está afinado, mas soa "errado" — por quê?</summary>
+            <p>Confira se algum dedo está tocando sem querer em uma corda vizinha, e se você está pressionando a casa correta (perto do traste seguinte, não em cima dele). Também vale reconferir a afinação corda por corda — veja o <a href="#afinacao">capítulo 5</a>. Violões desafinam com facilidade nas primeiras semanas de uso, e um erro comum é afinar a 2ª corda pela casa 5 da 3ª, quando o certo é a casa 4.</p>
+          </details>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="page-footer">
+      <button class="nav-btn" id="btnPrev" type="button">← Anterior</button>
+      <span class="prog" id="progText" aria-live="polite"></span>
+      <button class="nav-btn" id="btnNext" type="button">Próximo →</button>
+    </div>
+  </main>
+</div>
+
+<script>
+  /* ------------------------------------------------------------------
+     Cartilha do aluno — navegação por capítulos.
+
+     Este array é a única fonte da ordem e da numeração: o índice 0 é a
+     capa (sem número) e os demais são numerados a partir de 1. Inserir um
+     capítulo aqui renumera o resto sozinho, inclusive o rótulo
+     "CAPÍTULO N" de cada seção — o número escrito no HTML é só um
+     ponto de partida, o script o reescreve na abertura.
+     ------------------------------------------------------------------ */
+  const chapters = [
+    {id:'capa',       label:'Bem-vindo'},
+    {id:'partes',     label:'Partes do violão'},
+    {id:'postura',    label:'Postura correta'},
+    {id:'maos',       label:'Suas mãos'},
+    {id:'braco',      label:'Braço e cordas'},
+    {id:'afinacao',   label:'Afinar o violão'},
+    {id:'cifras',     label:'Ler um diagrama'},
+    {id:'acordes',    label:'Primeiros acordes'},
+    {id:'exercicios', label:'Exercícios de troca'},
+    {id:'ritmo',      label:'Primeiro ritmo'},
+    {id:'duvidas',    label:'Dúvidas frequentes'},
+  ];
+
+  const STORE_KEY = 'cartilha-violao';
+
+  /* localStorage estoura em janela anônima ou com cookies bloqueados.
+     Lembrar onde o aluno parou é conforto, não requisito: falhou, segue. */
+  function loadState(){
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+    catch(e){ return {}; }
+  }
+  function saveState(data){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
+    catch(e){ /* sem persistência, tudo bem */ }
+  }
+
+  const state = loadState();
+  const seen  = new Set(Array.isArray(state.seen) ? state.seen : []);
+  let currentIdx = 0;
+
+  const progText = document.getElementById('progText');
+  const btnPrev  = document.getElementById('btnPrev');
+  const btnNext  = document.getElementById('btnNext');
+
+  // ---------- barra lateral + numeração das seções ----------
+  const nav = document.getElementById('chapterNav');
+  chapters.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'chap-btn';
+    btn.type = 'button';
+    btn.dataset.id = c.id;
+    btn.innerHTML = '<span class="num">' + (i === 0 ? '—' : i) + '</span><span>' + c.label + '</span>';
+    btn.addEventListener('click', () => showChapter(c.id));
+    nav.appendChild(btn);
+    c.btn = btn;
+
+    c.section = document.querySelector('.chapter[data-chapter="' + c.id + '"]');
+    if(c.section && i > 0){
+      const eyebrow = c.section.querySelector('.eyebrow');
+      if(eyebrow) eyebrow.textContent = 'CAPÍTULO ' + i;
+    }
+  });
+
+  function showChapter(id, opts){
+    opts = opts || {};
+    const idx = chapters.findIndex(c => c.id === id);
+    if(idx < 0) return;
+
+    seen.add(id);
+
+    chapters.forEach((c, i) => {
+      const on = (i === idx);
+      if(c.section) c.section.classList.toggle('active', on);
+      c.btn.classList.toggle('active', on);
+      c.btn.classList.toggle('seen', seen.has(c.id));
+      c.btn.setAttribute('aria-current', on ? 'true' : 'false');
+    });
+
+    currentIdx = idx;
+    const total = chapters.length - 1;
+    progText.textContent = idx === 0
+      ? 'Capa · ' + total + ' capítulos'
+      : 'Capítulo ' + idx + ' de ' + total;
+    btnPrev.disabled = (idx === 0);
+    btnNext.disabled = (idx === chapters.length - 1);
+
+    saveState({ last: id, seen: Array.from(seen) });
+
+    // mantém o botão à vista (faixa horizontal no celular, coluna no desktop)
+    if(chapters[idx].btn.scrollIntoView){
+      chapters[idx].btn.scrollIntoView({block:'nearest', inline:'center'});
+    }
+    // quem rola é o documento: #contentScroll não tem overflow próprio
+    window.scrollTo(0, 0);
+
+    // URL por capítulo: permite mandar link direto e usar voltar/avançar
+    const hash = '#' + id;
+    if(location.hash !== hash){
+      if(opts.replace) history.replaceState(null, '', hash);
+      else             history.pushState(null, '', hash);
+    }
+  }
+
+  function go(dir){
+    const next = currentIdx + dir;
+    if(next >= 0 && next < chapters.length) showChapter(chapters[next].id);
+  }
+
+  btnPrev.addEventListener('click', () => go(-1));
+  btnNext.addEventListener('click', () => go(1));
+
+  // voltar/avançar do navegador e links internos (href="#afinacao")
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.replace('#', '');
+    if(id && id !== chapters[currentIdx].id) showChapter(id, {replace:true});
+  });
+
+  // setas do teclado, sem atrapalhar quem está digitando em algum campo
+  document.addEventListener('keydown', (e) => {
+    if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const t = e.target;
+    if(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if(e.key === 'ArrowRight'){ e.preventDefault(); go(1); }
+    else if(e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); }
+  });
+
+  // ---------- erro comum de postura ----------
+  const btnPostura = document.getElementById('btnPostura');
+  const boxPostura = document.getElementById('posturaErrada');
+  btnPostura.addEventListener('click', () => {
+    const estavaAberto = !boxPostura.hidden;
+    boxPostura.hidden = estavaAberto;
+    btnPostura.setAttribute('aria-expanded', String(!estavaAberto));
+    btnPostura.textContent = estavaAberto
+      ? '⚠ Ver erro comum de postura'
+      : '⚠ Ocultar erro comum de postura';
+  });
+
+  // ---------- impressão / PDF ----------
+  /* O CSS de impressão revela todos os capítulos de uma vez. Falta abrir os
+     <details> do FAQ: conteúdo de <details> fechado não vai para o papel.
+     O Safari antigo não dispara beforeprint/afterprint, daí o matchMedia
+     como reserva — e a flag evita que os dois caminhos se atropelem. */
+  let impressaoAtiva = false;
+  let faqFechados = [];
+
+  function prepararImpressao(){
+    if(impressaoAtiva) return;
+    impressaoAtiva = true;
+    faqFechados = [].filter.call(document.querySelectorAll('details.faq'), d => !d.open);
+    faqFechados.forEach(d => { d.open = true; });
+  }
+  function restaurarImpressao(){
+    if(!impressaoAtiva) return;
+    impressaoAtiva = false;
+    faqFechados.forEach(d => { d.open = false; });
+    faqFechados = [];
+  }
+
+  window.addEventListener('beforeprint', prepararImpressao);
+  window.addEventListener('afterprint', restaurarImpressao);
+  if(window.matchMedia){
+    const mq = window.matchMedia('print');
+    const onPrintChange = (e) => { e.matches ? prepararImpressao() : restaurarImpressao(); };
+    if(mq.addEventListener) mq.addEventListener('change', onPrintChange);
+    else if(mq.addListener)  mq.addListener(onPrintChange);
+  }
+  document.getElementById('btnPrint').addEventListener('click', () => window.print());
+
+  // ---------- diagramas de acorde ----------
+  /* Cordas sempre da 6ª (mais grossa) para a 1ª, que é a ordem em que
+     aparecem da esquerda para a direita no diagrama. */
+  const chordDefs = {
+    'Mi menor': {abbr:'Em', strings:[
+      {s:'6ª', pos:'O'}, {s:'5ª', fret:2, finger:2}, {s:'4ª', fret:2, finger:3},
+      {s:'3ª', pos:'O'}, {s:'2ª', pos:'O'}, {s:'1ª', pos:'O'}
+    ]},
+    'Dó maior': {abbr:'C', strings:[
+      {s:'6ª', pos:'X'}, {s:'5ª', fret:3, finger:3}, {s:'4ª', fret:2, finger:2},
+      {s:'3ª', pos:'O'}, {s:'2ª', fret:1, finger:1}, {s:'1ª', pos:'O'}
+    ]},
+    'Sol maior': {abbr:'G', strings:[
+      {s:'6ª', fret:3, finger:3}, {s:'5ª', fret:2, finger:2}, {s:'4ª', pos:'O'},
+      {s:'3ª', pos:'O'}, {s:'2ª', pos:'O'}, {s:'1ª', fret:3, finger:4}
+    ]},
+    'Ré maior': {abbr:'D', strings:[
+      {s:'6ª', pos:'X'}, {s:'5ª', pos:'X'}, {s:'4ª', pos:'O'},
+      {s:'3ª', fret:2, finger:1}, {s:'2ª', fret:3, finger:3}, {s:'1ª', fret:2, finger:2}
+    ]}
+  };
+
+  function chordSVG(def, nome){
+    const xs = [16,40,64,88,112,136];
+    const fretY = [36,68,100,132,164];
+    const tid = 'cd-' + def.abbr;
+
+    let svg = '<svg width="152" height="200" viewBox="0 0 152 200" role="img" aria-labelledby="' + tid + '" xmlns="http://www.w3.org/2000/svg">';
+    svg += '<title id="' + tid + '">Diagrama do acorde ' + def.abbr + ', ' + nome + '.</title>';
+    svg += '<rect x="16" y="30" width="120" height="6" fill="#4A3220"/>';
+    fretY.slice(1).forEach(y => {
+      svg += '<line x1="16" y1="' + y + '" x2="136" y2="' + y + '" stroke="#8C5A2E" stroke-width="2"/>';
+    });
+    xs.forEach(x => {
+      svg += '<line x1="' + x + '" y1="36" x2="' + x + '" y2="164" stroke="#4A3220" stroke-width="1.4"/>';
+    });
+
+    def.strings.forEach((st, i) => {
+      const x = xs[i];
+      if(st.pos === 'O'){
+        svg += '<circle cx="' + x + '" cy="18" r="7" fill="none" stroke="#4A3220" stroke-width="2"/>';
+      } else if(st.pos === 'X'){
+        svg += '<text x="' + x + '" y="23" font-family="Work Sans" font-size="14" font-weight="700" fill="#8C3B2E" text-anchor="middle">✕</text>';
+      } else {
+        const y = fretY[st.fret-1] + (fretY[st.fret] - fretY[st.fret-1]) / 2;
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="12" fill="#B8862E"/>';
+        svg += '<text x="' + x + '" y="' + (y+4) + '" font-family="Work Sans" font-size="11" font-weight="700" fill="#4A3220" text-anchor="middle">' + st.finger + '</text>';
+      }
+      // número da corda, para não restar dúvida de qual lado é qual
+      svg += '<text x="' + x + '" y="181" font-family="Work Sans" font-size="9" fill="#6B5340" text-anchor="middle">' + st.s + '</text>';
+    });
+
+    svg += '</svg>';
+    return svg;
+  }
+
+  function notaCordas(def){
+    const mudas = def.strings.filter(st => st.pos === 'X').map(st => st.s);
+    if(!mudas.length) return '<div class="note all">Toque as 6 cordas</div>';
+    return '<div class="note">Não toque a ' + mudas.join(' nem a ') + '</div>';
+  }
+
+  const chordGrid = document.getElementById('chordGrid');
+  Object.keys(chordDefs).forEach(nome => {
+    const def = chordDefs[nome];
+    const div = document.createElement('div');
+    div.className = 'card chord-card';
+    div.innerHTML = '<h3>' + def.abbr + '</h3><div class="sub">' + nome + '</div>'
+                  + chordSVG(def, nome) + notaCordas(def);
+    chordGrid.appendChild(div);
+  });
+
+  // ---------- abertura: hash da URL > onde o aluno parou > capa ----------
+  const existe = (id) => chapters.some(c => c.id === id);
+  const idHash = location.hash.replace('#', '');
+  const inicial = existe(idHash) ? idHash : (existe(state.last) ? state.last : 'capa');
+  showChapter(inicial, {replace:true});
+</script>
+
+</body>
+</html>
