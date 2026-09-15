@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ①  TÍTULO DA ABA: repita aqui o título da aula -->
+<title>Título da aula</title>
+
+<meta name="theme-color" content="#4A3220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2E9D3; --paper-deep:#E9DCBC; --ink:#3B2A1B; --ink-soft:#6B5340;
+    --wood-deep:#4A3220; --wood-light:#C99A5B; --brass:#B8862E;
+    --sage:#4B6B4F; --sage-deep:#33492F; --rose:#8C3B2E; --line:rgba(59,42,27,0.18);
+    --font-display:'Fraunces',Georgia,serif; --font-body:'Work Sans',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.6;
+    background-image:radial-gradient(circle at 1px 1px, rgba(59,42,27,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  h1,h2,h3{font-family:var(--font-display); color:var(--wood-deep); margin:0 0 .4em; font-weight:600;}
+  h2{ font-size:1.35rem; margin-top:1.6em; }
+  h3{ font-size:1.08rem; margin-top:1.3em; }
+  p{ margin:0 0 1em; }
+  a{ color:var(--wood-deep); }
+
+  header.topo{ background:var(--wood-deep); color:var(--paper); padding:26px 20px; }
+  .topo .dentro{ max-width:720px; margin:0 auto; }
+  .topo .data{ font-size:.74rem; letter-spacing:.04em; color:var(--wood-light); font-weight:600; }
+  .topo h1{ color:var(--paper); font-size:clamp(1.6rem,5vw,2.2rem); margin:.15em 0 .5em; }
+  .voltar{
+    display:inline-flex; align-items:center; gap:8px;
+    background:none; border:1px solid rgba(242,233,211,.4); color:var(--paper);
+    padding:9px 16px; border-radius:20px; text-decoration:none; font-size:.84rem; font-weight:600;
+  }
+  .voltar:hover{ background:var(--brass); color:var(--wood-deep); border-color:var(--brass); }
+
+  main{ max-width:720px; margin:0 auto; padding:30px 20px 60px; }
+
+  .dica{
+    border-left:3px solid var(--sage); background:rgba(75,107,79,.08);
+    padding:14px 16px; border-radius:0 4px 4px 0; margin:20px 0;
+  }
+  .dica b{ color:var(--sage-deep); }
+  .atencao{
+    border-left:3px solid var(--rose); background:rgba(140,59,46,.07);
+    padding:14px 16px; border-radius:0 4px 4px 0; margin:20px 0;
+  }
+  .atencao b{ color:var(--rose); }
+
+  .praticar{
+    background:var(--paper-deep); border:1px solid var(--line); border-radius:4px;
+    padding:20px 24px; margin:22px 0; box-shadow:4px 4px 0 rgba(59,42,27,.10);
+  }
+  .praticar h3{ margin-top:0; }
+  .praticar ol{ margin:0; padding-left:20px; }
+  .praticar li{ margin-bottom:10px; }
+
+  .video{ margin:22px 0; }
+  .video a{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--wood-deep); color:var(--paper); text-decoration:none;
+    padding:11px 18px; border-radius:20px; font-weight:600; font-size:.88rem;
+  }
+  .video a:hover{ background:var(--brass); color:var(--wood-deep); }
+
+  footer{ max-width:720px; margin:0 auto; padding:0 20px 40px; color:var(--ink-soft); font-size:.82rem; }
+
+  @media print{
+    body{ background:#fff; background-image:none; }
+    header.topo{ background:#fff; color:#000; padding:0 0 12px; border-bottom:2px solid #4A3220; }
+    .topo h1{ color:#000; } .topo .data{ color:#555; }
+    .voltar, .video{ display:none; }
+    .praticar{ box-shadow:none; background:#fff; }
+    .dica,.atencao{ background:#fff; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="dentro">
+    <!-- ②  DATA DA AULA -->
+    <div class="data">AULA DE 15 DE SETEMBRO DE 2026</div>
+
+    <!-- ③  TÍTULO DA AULA -->
+    <h1>Título da aula</h1>
+
+    <a class="voltar" href="./">← Todos os meus materiais</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ④  DAQUI PARA BAIXO É O CONTEÚDO DA AULA.
+           Os blocos abaixo são exemplos: apague os que não usar,
+           duplique os que usar mais de uma vez. -->
+
+  <p>Escreva aqui a abertura da aula, em uma ou duas frases: o que o aluno vai
+  trabalhar nesta semana e por quê.</p>
+
+  <h2>Um título de seção</h2>
+
+  <p>Texto normal da explicação. Para deixar uma palavra <b>em destaque</b>,
+  use as marcas em volta dela.</p>
+
+  <div class="dica">
+    <b>Dica:</b> este é o bloco verde, para uma observação que ajuda.
+  </div>
+
+  <div class="atencao">
+    <b>Atenção:</b> este é o bloco vermelho, para um erro comum a evitar.
+  </div>
+
+  <div class="praticar">
+    <h3>Para praticar até a próxima aula</h3>
+    <ol>
+      <li>Primeiro exercício, com o tempo sugerido de estudo.</li>
+      <li>Segundo exercício.</li>
+      <li>Terceiro exercício.</li>
+    </ol>
+  </div>
+
+  <div class="video">
+    <!-- troque o endereço abaixo pelo link do vídeo; ou apague o bloco inteiro -->
+    <a href="https://www.youtube.com/" target="_blank" rel="noopener">▶ Vídeo de apoio</a>
+  </div>
+
+</main>
+
+<footer>
+  Material da aula — guarde o link, ele fica sempre disponível.
+</footer>
+
+</body>
+</html>
