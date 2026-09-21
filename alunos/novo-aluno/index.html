@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material do aluno</title>
+<meta name="theme-color" content="#4A3220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2E9D3; --paper-deep:#E9DCBC; --ink:#3B2A1B; --ink-soft:#6B5340;
+    --wood-deep:#4A3220; --wood-light:#C99A5B; --brass:#B8862E;
+    --sage:#4B6B4F; --rose:#8C3B2E; --line:rgba(59,42,27,0.18);
+    --font-display:'Fraunces',Georgia,serif; --font-body:'Work Sans',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.55;
+    background-image:radial-gradient(circle at 1px 1px, rgba(59,42,27,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  h1,h2,h3{font-family:var(--font-display); color:var(--wood-deep); margin:0 0 .4em; font-weight:600;}
+  a{color:var(--wood-deep);}
+
+  header.topo{ background:var(--wood-deep); color:var(--paper); padding:26px 20px; }
+  .topo .dentro{ max-width:760px; margin:0 auto; }
+  .topo .selo{ font-size:.72rem; letter-spacing:.04em; color:var(--wood-light); font-weight:600; }
+  .topo h1{ color:var(--paper); font-size:clamp(1.6rem,5vw,2.2rem); margin:.15em 0 .5em; }
+  .btn-cartilha{
+    display:inline-flex; align-items:center; gap:8px;
+    background:none; border:1px solid rgba(242,233,211,.4); color:var(--paper);
+    padding:9px 16px; border-radius:20px; text-decoration:none;
+    font-size:.84rem; font-weight:600;
+  }
+  .btn-cartilha:hover{ background:var(--brass); color:var(--wood-deep); border-color:var(--brass); }
+
+  main{ max-width:760px; margin:0 auto; padding:30px 20px 60px; }
+  .intro{ color:var(--ink-soft); font-size:1.02rem; max-width:58ch; }
+
+  ul.materiais{ list-style:none; margin:24px 0 0; padding:0; }
+  ul.materiais li{ margin-bottom:12px; }
+  a.material{
+    display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+    background:var(--paper-deep); border:1px solid var(--line); border-radius:4px;
+    padding:16px 18px; text-decoration:none; color:var(--ink);
+    box-shadow:4px 4px 0 rgba(59,42,27,.10);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  a.material:hover{ transform:translate(-1px,-1px); box-shadow:5px 5px 0 rgba(59,42,27,.14); }
+  a.material .data{
+    font-size:.74rem; font-weight:700; color:var(--rose);
+    letter-spacing:.03em; flex-shrink:0; min-width:5.2em;
+  }
+  a.material .titulo{ font-family:var(--font-display); font-size:1.08rem; color:var(--wood-deep); font-weight:600; }
+
+  .aviso{
+    border-left:3px solid var(--sage); background:rgba(75,107,79,.08);
+    padding:14px 16px; border-radius:0 4px 4px 0; font-size:.94rem; margin-top:24px;
+  }
+  .aviso.erro{ border-left-color:var(--rose); background:rgba(140,59,46,.07); }
+  .carregando{ color:var(--ink-soft); font-size:.92rem; margin-top:24px; }
+  footer{ max-width:760px; margin:0 auto; padding:0 20px 40px; color:var(--ink-soft); font-size:.8rem; }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="dentro">
+    <div class="selo">MATERIAL DAS AULAS</div>
+    <h1 id="nomeAluno">Aluno</h1>
+    <a class="btn-cartilha" href="../../">← Voltar para a cartilha</a>
+  </div>
+</header>
+
+<main>
+  <p class="intro">Aqui fica o material das suas aulas, do mais recente para o mais antigo. Abra quando quiser revisar — fica sempre disponível.</p>
+  <p class="carregando" id="carregando">Carregando o material…</p>
+  <ul class="materiais" id="lista"></ul>
+  <div id="recado"></div>
+</main>
+
+<footer id="rodape"></footer>
+
+<script>
+/* =======================================================================
+   ÚNICA LINHA PARA TROCAR AO CRIAR UM ALUNO NOVO:
+   escreva aqui o nome do aluno, do jeito que deve aparecer na página.
+   ======================================================================= */
+const ALUNO = 'Aluno(a)';
+/* ===================================================================== */
+
+
+/* Daqui para baixo não precisa mexer em nada.
+
+   A lista de materiais é montada sozinha a partir dos arquivos que
+   existem nesta pasta no GitHub: você sobe um .html novo e ele aparece
+   aqui em cerca de um minuto, sem editar esta página.
+
+   Quem é o dono, qual o repositório e qual a pasta sai da própria URL,
+   então este mesmo arquivo funciona igual para qualquer aluno e para
+   qualquer instrumento — é só copiar a pasta e trocar a linha acima. */
+
+document.getElementById('nomeAluno').textContent = ALUNO;
+document.title = ALUNO + ' — Material das aulas';
+
+const MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+/* Nome de arquivo esperado: AAAA-MM-DD-titulo-com-hifens.html
+   A data vira o rótulo lateral e o resto vira o título legível. */
+function interpretar(nomeArquivo){
+  const base = nomeArquivo.replace(/\.html?$/i, '');
+  const m = base.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+  if(!m){
+    /* Fora do padrão de data: mostra o nome do arquivo mesmo. O prefixo
+       "0000" joga esses para o fim da lista — sem ele, um nome começando
+       por letra viria antes de qualquer data na ordenação. */
+    return { data:'', rotulo:'', titulo: base.replace(/[-_]+/g,' ').trim(), ordem: '0000-' + base };
+  }
+  const [, ano, mes, dia, resto] = m;
+  const titulo = resto.replace(/[-_]+/g,' ').trim();
+  return {
+    data: ano + '-' + mes + '-' + dia,
+    rotulo: dia + ' ' + (MESES[parseInt(mes,10)-1] || ''),
+    titulo: titulo.charAt(0).toUpperCase() + titulo.slice(1),
+    ordem: base
+  };
+}
+
+function caminhoAtual(){
+  // /violao/alunos/joao/  ->  repo 'violao', pasta 'alunos/joao'
+  const partes = location.pathname.split('/').filter(Boolean);
+  if(partes[partes.length-1] && /\.html?$/i.test(partes[partes.length-1])) partes.pop();
+  const dono = location.hostname.split('.')[0];
+  return { dono, repo: partes[0], pasta: partes.slice(1).join('/') };
+}
+
+function mostrarRecado(texto, erro){
+  const div = document.createElement('div');
+  div.className = 'aviso' + (erro ? ' erro' : '');
+  div.innerHTML = texto;
+  document.getElementById('recado').appendChild(div);
+}
+
+async function montarLista(){
+  const carregando = document.getElementById('carregando');
+  const lista = document.getElementById('lista');
+  const { dono, repo, pasta } = caminhoAtual();
+
+  // aberto como arquivo local, fora do GitHub Pages: não há o que listar
+  if(location.protocol === 'file:' || !repo){
+    carregando.remove();
+    mostrarRecado('Esta página monta a lista a partir do GitHub. Abra pelo endereço publicado para ver o material.', false);
+    return;
+  }
+
+  const url = 'https://api.github.com/repos/' + dono + '/' + repo + '/contents/' + pasta;
+  let itens;
+  try{
+    const r = await fetch(url, {headers:{'Accept':'application/vnd.github+json'}});
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    itens = await r.json();
+    if(!Array.isArray(itens)) throw new Error('resposta inesperada');
+  }catch(e){
+    carregando.remove();
+    mostrarRecado('Não consegui carregar a lista agora. Tente recarregar daqui a pouco — o material continua no ar, nada se perdeu.', true);
+    return;
+  }
+
+  const paginas = itens
+    .filter(i => i.type === 'file' && /\.html?$/i.test(i.name) && i.name.toLowerCase() !== 'index.html')
+    .map(i => Object.assign(interpretar(i.name), {arquivo: i.name}))
+    .sort((a,b) => b.ordem.localeCompare(a.ordem));   // mais recente primeiro
+
+  carregando.remove();
+
+  if(!paginas.length){
+    mostrarRecado('Ainda não há material publicado aqui. Assim que a primeira aula subir, ela aparece nesta página.', false);
+    return;
+  }
+
+  paginas.forEach(p => {
+    const li = document.createElement('li');
+    const a  = document.createElement('a');
+    a.className = 'material';
+    a.href = p.arquivo;
+    a.innerHTML = '<span class="data">' + (p.rotulo || '&nbsp;') + '</span>'
+                + '<span class="titulo"></span>';
+    a.querySelector('.titulo').textContent = p.titulo;
+    li.appendChild(a);
+    lista.appendChild(li);
+  });
+
+  document.getElementById('rodape').textContent =
+    paginas.length + (paginas.length === 1 ? ' material publicado' : ' materiais publicados');
+}
+
+montarLista();
+</script>
+
+</body>
+</html>

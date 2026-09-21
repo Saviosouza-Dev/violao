@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Troca no tempo</title>
+
+<meta name="theme-color" content="#4A3220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2E9D3; --paper-deep:#E9DCBC; --ink:#3B2A1B; --ink-soft:#6B5340;
+    --wood-deep:#4A3220; --wood-light:#C99A5B; --brass:#B8862E;
+    --sage:#4B6B4F; --sage-deep:#33492F; --rose:#8C3B2E; --line:rgba(59,42,27,0.18);
+    --font-display:'Fraunces',Georgia,serif; --font-body:'Work Sans',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.6;
+    background-image:radial-gradient(circle at 1px 1px, rgba(59,42,27,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  h1,h2,h3{font-family:var(--font-display); color:var(--wood-deep); margin:0 0 .4em; font-weight:600;}
+  h2{ font-size:1.35rem; margin-top:1.6em; }
+  h3{ font-size:1.08rem; margin-top:1.3em; }
+  p{ margin:0 0 1em; }
+  a{ color:var(--wood-deep); }
+
+  header.topo{ background:var(--wood-deep); color:var(--paper); padding:26px 20px; }
+  .topo .dentro{ max-width:720px; margin:0 auto; }
+  .topo .data{ font-size:.74rem; letter-spacing:.04em; color:var(--wood-light); font-weight:600; }
+  .topo h1{ color:var(--paper); font-size:clamp(1.6rem,5vw,2.2rem); margin:.15em 0 .5em; }
+  .voltar{
+    display:inline-flex; align-items:center; gap:8px;
+    background:none; border:1px solid rgba(242,233,211,.4); color:var(--paper);
+    padding:9px 16px; border-radius:20px; text-decoration:none; font-size:.84rem; font-weight:600;
+  }
+  .voltar:hover{ background:var(--brass); color:var(--wood-deep); border-color:var(--brass); }
+
+  main{ max-width:720px; margin:0 auto; padding:30px 20px 60px; }
+
+  .dica{
+    border-left:3px solid var(--sage); background:rgba(75,107,79,.08);
+    padding:14px 16px; border-radius:0 4px 4px 0; margin:20px 0;
+  }
+  .dica b{ color:var(--sage-deep); }
+  .atencao{
+    border-left:3px solid var(--rose); background:rgba(140,59,46,.07);
+    padding:14px 16px; border-radius:0 4px 4px 0; margin:20px 0;
+  }
+  .atencao b{ color:var(--rose); }
+
+  .praticar{
+    background:var(--paper-deep); border:1px solid var(--line); border-radius:4px;
+    padding:20px 24px; margin:22px 0; box-shadow:4px 4px 0 rgba(59,42,27,.10);
+  }
+  .praticar h3{ margin-top:0; }
+  .praticar ol{ margin:0; padding-left:20px; }
+  .praticar li{ margin-bottom:10px; }
+
+  .video{ margin:22px 0; }
+  .video a{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--wood-deep); color:var(--paper); text-decoration:none;
+    padding:11px 18px; border-radius:20px; font-weight:600; font-size:.88rem;
+  }
+  .video a:hover{ background:var(--brass); color:var(--wood-deep); }
+
+  footer{ max-width:720px; margin:0 auto; padding:0 20px 40px; color:var(--ink-soft); font-size:.82rem; }
+
+  @media print{
+    body{ background:#fff; background-image:none; }
+    header.topo{ background:#fff; color:#000; padding:0 0 12px; border-bottom:2px solid #4A3220; }
+    .topo h1{ color:#000; } .topo .data{ color:#555; }
+    .voltar, .video{ display:none; }
+    .praticar{ box-shadow:none; background:#fff; }
+    .dica,.atencao{ background:#fff; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="dentro">
+    <div class="data">AULA DE 21 DE SETEMBRO DE 2026</div>
+
+    <h1>Troca no tempo</h1>
+
+    <a class="voltar" href="./">← Todos os meus materiais</a>
+  </div>
+</header>
+
+<main>
+
+  <p>Até aqui você trocou de acorde no seu próprio tempo: forma, confere, toca.
+  Hoje entra a peça que falta para isso virar música — <b>a contagem não para</b>,
+  mesmo quando a mão atrasa.</p>
+
+  <h2>A regra do exercício</h2>
+
+  <p>Conte “1, 2, 3, 4” em voz alta, bem devagar, e mantenha essa contagem do
+  começo ao fim. Toque <b>Em</b> no “1”; a partir daí a mão tem quatro tempos
+  para chegar em <b>C</b>. No “1” seguinte o acorde precisa estar pronto e soar.</p>
+
+  <p>Se não der tempo, não pare e não repita a contagem: deixe aquele compasso
+  passar em silêncio e entre no próximo. Errar dentro do tempo é o que ensina a
+  mão a se antecipar.</p>
+
+  <div class="dica">
+    <b>Dica:</b> o dedo-guia vale aqui. Entre C e Em o dedo 2 quase não sai do
+    lugar — comece o movimento pelos outros dedos e use ele como âncora.
+  </div>
+
+  <div class="atencao">
+    <b>Atenção:</b> o hábito que este exercício existe para desmanchar é parar a
+    contagem para arrumar a mão. Acorde falhado no tempo certo é progresso;
+    acorde perfeito fora do tempo só repete o hábito antigo.
+  </div>
+
+  <h2>Quando apertar o passo</h2>
+
+  <p>São três estágios: quatro tempos por acorde, depois dois, depois um. Só
+  passe para o próximo quando o atual sair limpo três vezes seguidas — se voltar
+  a falhar, volte um estágio sem dó. Vencido o par Em ↔ C, recomece do zero com
+  C ↔ G e depois com G ↔ D.</p>
+
+  <div class="praticar">
+    <h3>Para praticar até a próxima aula</h3>
+    <ol>
+      <li><b>5 minutos</b> — Em ↔ C com quatro tempos por acorde, contando em voz alta.</li>
+      <li><b>5 minutos</b> — o mesmo par com dois tempos, só depois que os quatro estiverem saindo sem falha.</li>
+      <li><b>3 minutos</b> — C ↔ G começando de novo com quatro tempos.</li>
+      <li><b>2 minutos</b> — a roda Em → C → G → D → Em livre, sem contagem, só para não perder o que já está pronto.</li>
+    </ol>
+  </div>
+
+  <p>Este exercício também ficou na cartilha, como o número 6 do
+  <a href="https://saviosouza-dev.github.io/violao/#exercicios">capítulo de troca
+  de acordes</a> — o link abre direto nele.</p>
+
+</main>
+
+<footer>
+  Material da aula — guarde o link, ele fica sempre disponível.
+</footer>
+
+</body>
+</html>
